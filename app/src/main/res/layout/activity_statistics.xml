@@ -83,7 +83,7 @@
                             android:textColor="#005F6C"
                             android:textSize="20sp" />
 
-                        <com.bibaspirt.bubblesport.CustomTextView
+                        <com.BibaSpirt.CustomTextView
                             android:id="@+id/tvBestScore"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                             android:textColor="#005F6C"
                             android:textSize="20sp" />
 
-                        <com.bibaspirt.bubblesport.CustomTextView
+                        <com.BibaSpirt.CustomTextView
                             android:id="@+id/tvLastGameResult"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                             android:textColor="#005F6C"
                             android:textSize="20sp" />
 
-                        <com.bibaspirt.bubblesport.CustomTextView
+                        <com.BibaSpirt.CustomTextView
                             android:id="@+id/tvGamesPlayed"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
