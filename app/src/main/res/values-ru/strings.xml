@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Bubble Sport</string>
+    <string name="score">БАЛЛЫ:</string>
+    <string name="pause">ПАУЗА</string>
+    <string name="menu">МЕНЮ</string>
+    <string name="start">СТАРТ</string>
+    <string name="achievements">ДОСТИЖЕНИЯ</string>
+    <string name="statistics">СТАТИСТИКА</string>
+    <string name="settings">НАСТРОЙКИ</string>
+    <string name="play_10_times">Сыграть 10 раз</string>
+    <string name="play_5_times">Сыграть 5 раз</string>
+    <string name="play_20_times">Сыграть 20 раз</string>
+    <string name="reach_500_points">Набрать 500 баллов</string>
+    <string name="reach_1500_points">Набрать 1500 баллов</string>
+    <string name="reach_2000_points">Набрать 2000 баллов</string>
+    <string name="best_score">Лучший результат:</string>
+    <string name="last_game_result">Результат последней игры:</string>
+    <string name="music">МУЗЫКА</string>
+    <string name="on">ВКЛ</string>
+    <string name="off">ВЫКЛ</string>
+    <string name="language">ЯЗЫК</string>
+    <string name="eng">АНГ</string>
+    <string name="ru">РУ</string>
+    <string name="games_played">Игр сыграно:</string>
+    <string name="game_over">КОНЕЦ ИГРЫ</string>
+    <string name="continue1">ДАЛЬШЕ</string>
+    <string name="try_again">ЗАНОВО</string>
+</resources>
