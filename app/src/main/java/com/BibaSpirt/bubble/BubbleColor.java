@@ -27,7 +27,7 @@ public enum BubbleColor {
             case GREEN:
                 return R.drawable.ball6;
             case BLANK:
-                return R.drawable.blank;
+                return R.drawable.black_bubble;
         }
 
         return 0;

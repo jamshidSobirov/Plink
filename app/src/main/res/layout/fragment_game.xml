@@ -4,58 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1D93FC"
     tools:context=".fragment.GameFragment"
     tools:ignore="ContentDescription">
 
-    <ImageView
+    <FrameLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/foreground" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
-            android:layout_width="match_parent"
+            android:id="@+id/btnMenu"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/group1">
+            android:layout_margin="12dp"
+            android:paddingBottom="4dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/backbtn" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btnPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingBottom="4dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:src="@drawable/pausebtn" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp">
 
             <TextView
                 android:id="@+id/tvScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/juvanze"
                 android:text="@string/score"
-                android:textColor="#0C3D42"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textColor="#F1A007"
+                android:textSize="20sp" />
         </FrameLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -73,7 +102,6 @@
                             android:layout_gravity="end"
                             android:adjustViewBounds="true"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/group3"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -130,16 +158,16 @@
                 <ImageView
                     android:layout_width="170px"
                     android:layout_height="170px"
-                    android:layout_gravity="center"
-                    android:src="@drawable/group4" />
+                    android:layout_gravity="center" />
 
             </FrameLayout>
 
 
             <com.BibaSpirt.engine.GameView
                 android:id="@+id/game_view"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:rotation="180"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -147,60 +175,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:id="@+id/btnMenu"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:layout_weight="1"
-                android:background="@drawable/group2"
-                android:paddingBottom="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginVertical="12dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/menu"
-                    android:textColor="#0C3D42"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/btnPause"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:layout_weight="1"
-                android:background="@drawable/group2"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingBottom="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginVertical="12dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/pause"
-                    android:textColor="#0C3D42"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </FrameLayout>
-        </LinearLayout>
 
 
     </LinearLayout>

@@ -23,6 +23,7 @@ import com.BibaSpirt.bubble.BubbleManager;
 import com.BibaSpirt.bubble.Player;
 import com.BibaSpirt.engine.GameEngine;
 import com.BibaSpirt.inputcontroller.BasicInputController;
+import com.BibaSpirt.utils.ImageUtils;
 
 import java.util.Random;
 
@@ -101,23 +102,64 @@ public class GameFragment extends BaseFragment implements Observers {
 
     private void initBubble() {
         char[] bubbleColours = {'b', 'r', 'y', 'o', 'g', 'd'};
-        // Init bubble
-        bubbleArray = new char[][]{
-                {'o', 'y', 'r', 'r', 'd', 'y', 'r', 'd',},
-                {'g', 'y', 'g', 'g', 'd', 'y', 'y', 'o',},
-                {'y', 'b', 'o', 'b', 'y', 'b', 'd', 'r',},
-                {'r', 'y', 'r', 'o', 'r', 'y', 'r', 'y',},
-                {'y', 'b', 'b', 'y', 'd', 'g', 'b', 'o',},
-                {'d', 'y', 'r', 'y', 'd', 'y', 'r', 'y',},
-                {'y', 'd', 'g', 'r', 'd', 'r', 'y', 'o',},
-                {'y', 'b', 'r', 'b', 'y', 'b', 'r', 'r',},
-                {'0', '0', '0', '0', '0', '0', '0', '0',}};
-
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                bubbleArray[i][j] = bubbleColours[new Random().nextInt(6)];
+        // Init bubble with triangular pattern
+        bubbleArray = new char[14][11];
+        
+        // Fill with '0' first (empty spaces)
+        for (int i = 0; i < 14; i++) {
+            for (int j = 0; j < 11; j++) {
+                bubbleArray[i][j] = '0';
             }
         }
+
+        // Create upward triangular pattern
+        Random random = new Random();
+        int triangleHeight = 9;  // Height of 9 rows
+        int maxWidth = 11;  // Maximum width of the grid
+        
+        for (int row = 0; row < triangleHeight; row++) {
+            int actualRow = triangleHeight - row - 1;  // Start from bottom row
+            // Calculate width to increase by roughly 1.4 bubbles per row to reach 11 in 9 rows
+            int width = Math.min(maxWidth, (int)(row * 1.4 + 1));
+            int startCol = (maxWidth - width) / 2;  // Center the bubbles
+            int endCol = startCol + width;    // Calculate width for this row
+            
+            for (int col = startCol; col < endCol; col++) {
+                bubbleArray[actualRow][col] = bubbleColours[random.nextInt(6)];
+            }
+        }
+    }
+
+    public void addNewBubbleLine() {
+        char[][] newBubble = new char[14][11];
+        char[] bubbleColours = {'b', 'r', 'y', 'o', 'g', 'd'};
+        Random random = new Random();
+
+        // Fill with '0' first
+        for (int i = 0; i < 14; i++) {
+            for (int j = 0; j < 11; j++) {
+                newBubble[i][j] = '0';
+            }
+        }
+
+        // Create upward triangular pattern
+        int triangleHeight = 9;  // Height of 9 rows
+        int maxWidth = 11;  // Maximum width of the grid
+        
+        for (int row = 0; row < triangleHeight; row++) {
+            int actualRow = triangleHeight - row - 1;  // Start from bottom row
+            // Calculate width to increase by roughly 1.4 bubbles per row to reach 11 in 9 rows
+            int width = Math.min(maxWidth, (int)(row * 1.4 + 1));
+            int startCol = (maxWidth - width) / 2;  // Center the bubbles
+            int endCol = startCol + width;    // Calculate width for this row
+            
+            for (int col = startCol; col < endCol; col++) {
+                newBubble[actualRow][col] = bubbleColours[random.nextInt(6)];
+            }
+        }
+
+        bubbleArray = newBubble;
+        startGame();
     }
 
     @Override
@@ -137,7 +179,6 @@ public class GameFragment extends BaseFragment implements Observers {
         mGameEngine.setInputController(new BasicInputController(mGameEngine));
 //        mGameEngine.setSoundManager(getMainActivity().getSoundManager());
 
-//        // Init bubble
 
         // When the bubble is added exceed the max row, app will throw index out of bound exception,
         // so the better way is to set a fix row number and show a line at bottom, and when player
@@ -176,21 +217,6 @@ public class GameFragment extends BaseFragment implements Observers {
     public boolean onBackPressed() {
         getMainActivity().finish();
         return true;
-    }
-
-    public void addNewBubbleLine() {
-        char[][] newBubble = new char[9][8];
-        char[] bubbleColours = {'b', 'r', 'y', 'o', 'g', 'd'};
-
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                newBubble[i][j] = bubbleColours[new Random().nextInt(6)];
-            }
-        }
-
-        bubbleArray = newBubble;
-        startGame();
-
     }
 
     @Override
@@ -294,7 +320,6 @@ public class GameFragment extends BaseFragment implements Observers {
 
                 sharedPreferences.edit().putInt("lastGameResult", score).apply();
 
-
                 tvScore.setText(getString(R.string.score) + " " + score);
 //                ballPos++;
             }
@@ -307,11 +332,11 @@ public class GameFragment extends BaseFragment implements Observers {
     }
 
     private void placeTheBalls(int ballPos) {
-        ball1.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getBalls(ballPos)[1], null));
-        ball2.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getBalls(ballPos)[2], null));
-        ball3.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getBalls(ballPos)[3], null));
-        ball4.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getBalls(ballPos)[4], null));
-        ball5.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getBalls(ballPos)[5], null));
+        ball1.setImageDrawable(ImageUtils.getScaledDrawable(requireContext(), getBalls(ballPos)[1]));
+        ball2.setImageDrawable(ImageUtils.getScaledDrawable(requireContext(), getBalls(ballPos)[2]));
+        ball3.setImageDrawable(ImageUtils.getScaledDrawable(requireContext(), getBalls(ballPos)[3]));
+        ball4.setImageDrawable(ImageUtils.getScaledDrawable(requireContext(), getBalls(ballPos)[4]));
+        ball5.setImageDrawable(ImageUtils.getScaledDrawable(requireContext(), getBalls(ballPos)[5]));
     }
 
 
@@ -334,4 +359,9 @@ public class GameFragment extends BaseFragment implements Observers {
 
         return temp;
     }
+
+
+
+
+
 }

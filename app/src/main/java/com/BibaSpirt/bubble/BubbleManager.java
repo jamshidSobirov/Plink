@@ -1,6 +1,5 @@
 package com.BibaSpirt.bubble;
 
-
 import com.BibaSpirt.engine.GameEngine;
 import com.BibaSpirt.fragment.Observers;
 
@@ -25,7 +24,9 @@ public class BubbleManager {
         mRow = charArray.length;
 
         mBubbleArray = new Bubble[mRow][mCol];
-        mBubbleWidth = 200 * gameEngine.mPixelFactor;
+        // Calculate bubble width to fill screen width, but make bubbles smaller
+        float totalWidth = gameEngine.mScreenWidth * 0.85f;  // Use 85% of screen width
+        mBubbleWidth = (totalWidth / (mCol + 0.5f)) / gameEngine.mPixelFactor;
 
         initBubble(charArray);
     }
@@ -36,15 +37,17 @@ public class BubbleManager {
         mRow = charArray.length;
 
         mBubbleArray = new Bubble[mRow][mCol];
-        mBubbleWidth = 200 * gameEngine.mPixelFactor;
+        // Calculate bubble width to fill screen width, but make bubbles smaller
+        float totalWidth = gameEngine.mScreenWidth * 0.85f;  // Use 85% of screen width
+        mBubbleWidth = (totalWidth / (mCol + 0.5f)) / gameEngine.mPixelFactor;
         this.observers = observers;
 
         initBubble(charArray);
     }
 
     private void initBubble(char[][] charArray) {
-        float intervalX = mBubbleWidth;
-        float intervalY = mBubbleWidth * 0.85f;
+        float intervalX = mBubbleWidth * 0.80f;  // Reduced horizontal spacing to fit all columns
+        float intervalY = mBubbleWidth * 0.75f;  // Also reduced vertical spacing slightly
 
         // Add bubble to array
         for (int i = 0; i < mRow; i++) {
@@ -166,7 +169,6 @@ public class BubbleManager {
         // Add new bubble and set color
         newBubble.setBubbleColor(player.mBubbleColor);
 
-
         // Remove same color bubble
         popBubble(newBubble);
 
@@ -220,7 +222,6 @@ public class BubbleManager {
         }
     }
 
-
     private void popFloater() {
         // We start dfs from root
 
@@ -245,7 +246,6 @@ public class BubbleManager {
                 }
             }
         }
-
     }
 
     private void dfs(Bubble bubble) {
@@ -269,5 +269,4 @@ public class BubbleManager {
         }
         return counter;
     }
-
 }

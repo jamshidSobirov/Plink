@@ -17,7 +17,6 @@ public class MainActivity extends BaseActivity {
         LocaleHelper.updateLocale(this);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         setContentView(R.layout.activity_main);
-
         startService(svc);
     }
 
@@ -41,19 +40,18 @@ public class MainActivity extends BaseActivity {
         langChanged.launch(new Intent(this, SettingsActivity.class));
     }
 
-    ActivityResultLauncher langChanged = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-            (ActivityResultCallback<androidx.activity.result.ActivityResult>) result -> {
-                try {
-                    if (result.getData().getBooleanExtra("langChanged", false)) {
-                        recreate();
-                    } else {
-                        Log.d("@@@", ": false");
+    ActivityResultLauncher langChanged = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), (ActivityResultCallback<androidx.activity.result.ActivityResult>) result -> {
+        try {
+            if (result.getData().getBooleanExtra("langChanged", false)) {
+                recreate();
+            } else {
+                Log.d("@@@", ": false");
 
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-            });
+    });
 
 }

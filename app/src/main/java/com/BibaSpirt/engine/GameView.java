@@ -40,12 +40,28 @@ public class GameView extends View {
                 ArrayList<GameObject> currentLayer = mLayers.get(i);
                 int numObjects = currentLayer.size();
                 for (int j = 0; j < numObjects; j++) {
+                    currentLayer.get(j).onDraw(canvas);
+                }
+            }
+        }
+    }
+
+   /* @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        synchronized (mLayers) {
+            int numLayers = mLayers.size();
+            for (int i = 0; i < numLayers; i++) {
+                ArrayList<GameObject> currentLayer = mLayers.get(i);
+                int numObjects = currentLayer.size();
+                for (int j = 0; j < numObjects; j++) {
                     if (j % 16 != 15)
                         currentLayer.get(j).onDraw(canvas);
 
                 }
             }
         }
-    }
+    }*/
+
 
 }

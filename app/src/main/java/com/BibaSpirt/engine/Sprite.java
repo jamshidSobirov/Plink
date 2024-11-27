@@ -36,8 +36,6 @@ public abstract class Sprite extends GameObject {
     protected final Resources mResources;
     protected final SoundManager mSoundManager;
 
-
-
     protected Sprite(GameEngine gameEngine, int drawableRes) {
         mResources = gameEngine.getContext().getResources();
         mBitmap = getDefaultBitmap(mResources.getDrawable(drawableRes));
@@ -47,21 +45,58 @@ public abstract class Sprite extends GameObject {
         mScreenHeight = gameEngine.mScreenHeight;
         mWidth = (int) (mBitmap.getWidth() * mPixelFactor);
         mHeight = (int) (mBitmap.getHeight() * mPixelFactor);
-        mRadius = Math.max(mHeight, mWidth) / 2f;
+        // Reduce the collision radius to account for padding
+        mRadius = Math.max(mHeight, mWidth) * 0.4f;  
 
         mSoundManager = gameEngine.mSoundManager;
-
     }
 
     protected Bitmap getDefaultBitmap(Drawable drawable) {
-        return ((BitmapDrawable) drawable).getBitmap();
+        float COLORED_BUBBLE_SCALE = 0.52f;  // Scale for colored bubbles
+        float BLANK_BUBBLE_SCALE = 0.54f;    // Scale for blank bubbles
+        
+        if (drawable instanceof BitmapDrawable) {
+            Bitmap original = ((BitmapDrawable) drawable).getBitmap();
+            
+            // Create a cropped bitmap without padding
+            int size = Math.min(original.getWidth(), original.getHeight());
+            Bitmap croppedBitmap = Bitmap.createBitmap(
+                original,
+                (original.getWidth() - size) / 2,
+                (original.getHeight() - size) / 2,
+                size,
+                size
+            );
+            
+            int newWidth = (int)(croppedBitmap.getWidth() * COLORED_BUBBLE_SCALE);
+            int newHeight = (int)(croppedBitmap.getHeight() * COLORED_BUBBLE_SCALE);
+            return Bitmap.createScaledBitmap(croppedBitmap, newWidth, newHeight, true);
+        } else {
+            // Create a fully transparent bubble bitmap
+            int size = 360;
+            Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            
+            Paint paint = new Paint();
+            paint.setAntiAlias(true);
+            paint.setColor(Color.TRANSPARENT);
+            paint.setAlpha(0);
+            
+            float radius = size / 2f;
+            canvas.drawCircle(radius, radius, radius, paint);
+            
+            int newWidth = (int)(size * BLANK_BUBBLE_SCALE);
+            int newHeight = (int)(size * BLANK_BUBBLE_SCALE);
+            return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+        }
     }
 
     public boolean checkCollision(Sprite otherSprite) {
         double distanceX = (mX + mWidth / 2f) - (otherSprite.mX + otherSprite.mWidth / 2f);
         double distanceY = (mY + mHeight / 2f) - (otherSprite.mY + otherSprite.mHeight / 2f);
         double squareDistance = distanceX * distanceX + distanceY * distanceY;
-        double collisionDistance = (mRadius + otherSprite.mRadius);
+        // Add a small buffer to prevent premature collisions
+        double collisionDistance = (mRadius + otherSprite.mRadius) * 0.95;  
         return squareDistance <= collisionDistance * collisionDistance;
     }
 
@@ -88,10 +123,10 @@ public abstract class Sprite extends GameObject {
             canvas.drawRect(mBoundingRect, mPaint);
         }
 
-        float scaleFactor = mPixelFactor * mScale;
+        float scaleFactor = mPixelFactor * mScale * 0.72f;
         mMatrix.reset();
         mMatrix.postScale(scaleFactor, scaleFactor);
-        mMatrix.postTranslate(mX, mY);
+        mMatrix.postTranslate(mX + (mWidth * 0.02f), mY + (mHeight * 0.02f));  
         mMatrix.postRotate(mRotation, mX + mWidth / 2f, mY + mHeight / 2f);
         mPaint.setAlpha(mAlpha);
         canvas.drawBitmap(mBitmap, mMatrix, mPaint);

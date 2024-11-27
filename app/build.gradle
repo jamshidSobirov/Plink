@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'com.BibaSpirt'
-    compileSdk 32
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.BibaSpirt"
         minSdk 21
-        targetSdk 32
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
