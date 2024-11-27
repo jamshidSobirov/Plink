@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1D93FC"
-    tools:context="com.BibaSpirt.MainActivity">
+    android:background="#FA53BA"
+    tools:context="com.plink6746.MainActivity">
 
 
     <LinearLayout
@@ -52,7 +52,7 @@
 
         </FrameLayout>
 
-        <FrameLayout
+      <!--  <FrameLayout
             android:id="@+id/btnAchievements"
             android:layout_width="match_parent"
             android:layout_height="75dp"
@@ -74,7 +74,7 @@
                 android:text="@string/achievements"
                 android:textColor="#F1A007"
                 android:textSize="40sp" />
-        </FrameLayout>
+        </FrameLayout>-->
 
         <FrameLayout
             android:id="@+id/btnStatistics"
@@ -122,6 +122,46 @@
                 android:textColor="#F1A007"
                 android:textSize="40sp" />
         </FrameLayout>
+
+        <RadioGroup
+            android:id="@+id/difficultyGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/easyRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Easy"
+                android:checked="true"
+                android:textColor="#835B10"
+                android:buttonTint="#835B10"
+                android:fontFamily="@font/juvanze"
+                android:textSize="24sp"/>
+
+            <RadioButton
+                android:id="@+id/mediumRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium"
+                android:textColor="#835B10"
+                android:buttonTint="#835B10"
+                android:fontFamily="@font/juvanze"
+                android:textSize="24sp"/>
+
+            <RadioButton
+                android:id="@+id/hardRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hard"
+                android:textColor="#835B10"
+                android:buttonTint="#835B10"
+                android:fontFamily="@font/juvanze"
+                android:textSize="24sp"/>
+        </RadioGroup>
 
 
     </LinearLayout>

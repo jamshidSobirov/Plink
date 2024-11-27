@@ -11,6 +11,11 @@
                   <option name="appId" value="com.binance.d" />
                 </ConnectionSetting>
               </option>
+              <option name="failureTypes">
+                <list>
+                  <option value="FATAL" />
+                </list>
+              </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
               <option name="timeIntervalDays" value="SEVEN_DAYS" />
               <option name="visibilityType" value="ALL" />
@@ -22,10 +27,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.BibaSpirt" />
-                  <option name="mobileSdkAppId" value="1:300643961216:android:21a26dd73d86acc08d1965" />
-                  <option name="projectId" value="bubble-sport-b2468" />
-                  <option name="projectNumber" value="300643961216" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

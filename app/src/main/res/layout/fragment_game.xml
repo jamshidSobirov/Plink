@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1D93FC"
-    tools:context=".fragment.GameFragment"
+    android:background="#FA53BA"
+    tools:context="com.plink6746.fragment.GameFragment"
     tools:ignore="ContentDescription">
 
     <FrameLayout
@@ -163,7 +163,7 @@
             </FrameLayout>
 
 
-            <com.BibaSpirt.engine.GameView
+            <com.plink6746.engine.GameView
                 android:id="@+id/game_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

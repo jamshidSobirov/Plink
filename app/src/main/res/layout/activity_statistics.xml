@@ -4,21 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StatisticsActivity">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/foreground" />
+    android:background="#FA53BA"
+    tools:context="com.plink6746.StatisticsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +25,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/statistics"
-                android:textColor="#0C3D42"
+                android:textColor="#F1A007"
                 android:textSize="28sp"
                 android:textStyle="bold" />
         </FrameLayout>
@@ -55,15 +42,15 @@
                 android:layout_gravity="center">
 
                 <ImageView
-                    android:layout_gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
 
                 <LinearLayout
-                    android:layout_marginHorizontal="65dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginHorizontal="65dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -78,10 +65,10 @@
                             android:layout_weight="1.5"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/best_score"
-                            android:textColor="#005F6C"
+                            android:textColor="#F1A007"
                             android:textSize="20sp" />
 
-                        <com.BibaSpirt.CustomTextView
+                        <com.plink6746.CustomTextView
                             android:id="@+id/tvBestScore"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -111,10 +98,10 @@
                             android:layout_weight="1.5"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/last_game_result"
-                            android:textColor="#005F6C"
+                            android:textColor="#F1A007"
                             android:textSize="20sp" />
 
-                        <com.BibaSpirt.CustomTextView
+                        <com.plink6746.CustomTextView
                             android:id="@+id/tvLastGameResult"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -144,10 +131,10 @@
                             android:layout_weight="1.5"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/games_played"
-                            android:textColor="#005F6C"
+                            android:textColor="#F1A007"
                             android:textSize="20sp" />
 
-                        <com.BibaSpirt.CustomTextView
+                        <com.plink6746.CustomTextView
                             android:id="@+id/tvGamesPlayed"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -175,6 +162,8 @@
             android:layout_marginHorizontal="60dp"
             android:layout_marginBottom="20dp"
             android:padding="4dp"
+            android:background="#4B5A5A5A"
+
             android:paddingBottom="4dp">
 
             <TextView
@@ -189,7 +178,7 @@
                 android:gravity="center"
                 android:onClick="returnToMenu"
                 android:text="@string/menu"
-                android:textColor="#0C3D42"
+                android:textColor="#F1A007"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
