@@ -9,17 +9,17 @@ public enum BubbleColor {
 
         switch (this) {
             case BLUE:
-                return R.drawable.ball1;
+                return R.drawable.ball_blue;
             case RED:
-                return R.drawable.ball2;
+                return R.drawable.ball_red;
             case YELLOW:
-                return R.drawable.ball3;
+                return R.drawable.ball_yellow;
             case ORANGE:
-                return R.drawable.ball4;
+                return R.drawable.ball_orange;
             case BLACK:
-                return R.drawable.ball5;
+                return R.drawable.ball_black;
             case GREEN:
-                return R.drawable.ball6;
+                return R.drawable.ball_green;
             case BLANK:
                 return R.drawable.black_bubble;
         }

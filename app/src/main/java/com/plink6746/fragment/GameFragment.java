@@ -434,12 +434,12 @@ public class GameFragment extends BaseFragment implements Observers {
 
     private Integer[] getBalls(int pos) {
         Integer[] list = new Integer[6];
-        list[0] = R.drawable.ball1;
-        list[1] = R.drawable.ball2;
-        list[2] = R.drawable.ball3;
-        list[3] = R.drawable.ball4;
-        list[4] = R.drawable.ball5;
-        list[5] = R.drawable.ball6;
+        list[0] = R.drawable.ball_blue;
+        list[1] = R.drawable.ball_red;
+        list[2] = R.drawable.ball_yellow;
+        list[3] = R.drawable.ball_orange;
+        list[4] = R.drawable.ball_green;
+        list[5] = R.drawable.ball_black;
 
         Integer[] temp = new Integer[6];
         for (int i = pos, j = 0; i < 6; i++, j++) {

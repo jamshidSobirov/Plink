@@ -55,22 +55,20 @@ public abstract class Sprite extends GameObject {
         float COLORED_BUBBLE_SCALE = 0.52f;  // Scale for colored bubbles
         float BLANK_BUBBLE_SCALE = 0.54f;    // Scale for blank bubbles
         
-        if (drawable instanceof BitmapDrawable) {
-            Bitmap original = ((BitmapDrawable) drawable).getBitmap();
+        if (drawable != null) {
+            // Create a bitmap with the drawable's intrinsic dimensions
+            int size = Math.max(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            if (size <= 0) size = 360; // fallback size if intrinsic dimensions not available
             
-            // Create a cropped bitmap without padding
-            int size = Math.min(original.getWidth(), original.getHeight());
-            Bitmap croppedBitmap = Bitmap.createBitmap(
-                original,
-                (original.getWidth() - size) / 2,
-                (original.getHeight() - size) / 2,
-                size,
-                size
-            );
+            Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, size, size);
+            drawable.draw(canvas);
             
-            int newWidth = (int)(croppedBitmap.getWidth() * COLORED_BUBBLE_SCALE);
-            int newHeight = (int)(croppedBitmap.getHeight() * COLORED_BUBBLE_SCALE);
-            return Bitmap.createScaledBitmap(croppedBitmap, newWidth, newHeight, true);
+            // Scale the bitmap
+            int newWidth = (int)(size * COLORED_BUBBLE_SCALE);
+            int newHeight = (int)(size * COLORED_BUBBLE_SCALE);
+            return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
         } else {
             // Create a fully transparent bubble bitmap
             int size = 360;
