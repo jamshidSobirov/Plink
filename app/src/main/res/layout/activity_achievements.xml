@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.BibaSpirt.com.plink6746.AchievementsActivity">
+    tools:context="com.plink6746.AchievementsActivity">
 
     <ImageView
         android:layout_width="match_parent"

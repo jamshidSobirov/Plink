@@ -8,6 +8,12 @@
     tools:context="com.plink6746.fragment.GameFragment"
     tools:ignore="ContentDescription">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/app_bg" />
+
     <FrameLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -138,7 +144,7 @@
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:padding="2dp"
-                                android:scaleType="fitCenter"/>
+                                android:scaleType="fitCenter" />
 
                             <ImageView
                                 android:id="@+id/ball1"
